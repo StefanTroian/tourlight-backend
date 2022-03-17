@@ -7,6 +7,7 @@ global.BASE_PATH = `/api/${global.SERVICE_NAME}`;
 const http = require("http");
 const bodyParser = require("body-parser");
 const express = require("express");
+const cors = require('cors');
 const CONSTANTS = require("./config/constants");
 const port = CONSTANTS.PORT;
 const dbService = require("./mongo/database.service");
