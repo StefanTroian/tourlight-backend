@@ -19,8 +19,17 @@ app.disable("x-powered-by");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// const allowedOrigins = ['https://tourlight.herokuapp.com', undefined];
-// app.use(cors());
+const allowedOrigins = ['https://tourlight.herokuapp.com', undefined];
+app.use(cors({
+    credentials: true,
+    origin: (origin, callback) => {
+        if (allowedOrigins.includes(origin)) {
+            callback(null, true)
+        } else {
+            callback(new Error(`Origin: ${origin} is now allowed`))
+        }
+    }
+}));
 
 const server = http.createServer(app);
 
@@ -43,7 +52,7 @@ function setup() {
 async function init() {
     setup()
 
-    server.listen(port, async function() {
+    server.listen(process.env.PORT || port, async function () {
         console.log(`Server is listening on port: ${port}`);
     })
 }
