@@ -19,7 +19,7 @@ app.disable("x-powered-by");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-const allowedOrigins = ['https://tourlight.herokuapp.com', 'http://localhost:4200', undefined];
+const allowedOrigins = ['https://tourlight.herokuapp.com', 'http://localhost:4200', 'http://localhost:8080', undefined];
 app.use(cors({
     credentials: true,
     origin: (origin, callback) => {
