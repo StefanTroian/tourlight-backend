@@ -41,20 +41,28 @@ function setup() {
     //routes
     app.use(global.BASE_PATH + "/database", databaseRouter);
 
+    //
     app.use(function (req, res, next) {
         let error = new Error('Not Found');
         error.status = 404;
         next(error);
     })
-
 }
 
 async function init() {
     setup()
+    await dbService.authDatabases();
 
-    server.listen(process.env.PORT || port, async function () {
-        console.log(`Server is listening on port: ${port}`);
-    })
+    if (global.DATABASE) {
+        console.log(`Database connected.`);
+        
+        server.listen(process.env.PORT || port, async function () {
+            console.log(`Server is listening on port: ${port}`);
+        })
+    } else {
+        console.log(`Error authentication.`);
+        process.exit();
+    }
 }
 
 init();
