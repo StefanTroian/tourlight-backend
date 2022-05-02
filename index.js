@@ -14,6 +14,7 @@ const dbService = require("./mongo/database.service");
 
 const databaseRouter = require("./routers/database.router")
 const postRouter = require("./routers/post.router")
+const userRouter = require("./routers/user.router")
 
 const app = express();
 app.disable("x-powered-by");
@@ -42,6 +43,7 @@ function setup() {
     //routes
     app.use(global.BASE_PATH + "/database", databaseRouter);
     app.use(global.BASE_PATH + "/posts", postRouter);
+    app.use(global.BASE_PATH + "/users", userRouter);
 
     //
     app.use(function (req, res, next) {

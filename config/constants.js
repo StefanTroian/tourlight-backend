@@ -2,7 +2,7 @@
 
 const CONSTANTS = {
     SERVICE_NAME: 'tourlight',
-    PORT: 8080,
+    PORT: 8081,
     DBinfo: {
         DatabaseURL: `mongodb+srv://tourlight:SfveXHIu4n5CVOrb@tourlight.cpr8g.mongodb.net/tourlight?retryWrites=true&w=majority`,
         Databases: {
@@ -11,7 +11,8 @@ const CONSTANTS = {
     },
     Databases: {
         Collections: {
-            Posts: `posts`
+            Posts: `posts`,
+            Users: `users`
         }
     }
 }
