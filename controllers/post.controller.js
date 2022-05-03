@@ -42,7 +42,9 @@ const createPost = async function (req, res) {
 
         await global.DATABASE.collection(CONSTANTS.Databases.Collections.Posts).insertOne(post);
 
-        res.status(201).send(`Post inserted successfully.`) 
+        res.status(201).send({
+            message: `Post inserted successfully.`
+        }) 
 
     } catch (error) {
         res.status(500).send({
@@ -68,7 +70,9 @@ const updatePost = async function (req, res) {
         const updatedPost = { ...post, ...req.body };
         await global.DATABASE.collection(CONSTANTS.Databases.Collections.Posts).replaceOne({ 'id': req.params.id }, updatedPost );
 
-        res.status(200).send(`Post updated successfully.`) 
+        res.status(200).send({
+            message: `Post updated successfully.`
+        }) 
 
     } catch (error) {
         res.status(500).send({
@@ -92,7 +96,9 @@ const deletePost = async function (req, res) {
         
         await global.DATABASE.collection(CONSTANTS.Databases.Collections.Posts).deleteOne({ 'id': req.params.id });
 
-        res.status(200).send(`Post deleted successfully.`) 
+        res.status(200).send({
+            message: `Post deleted successfully.`
+        }) 
     } catch (error) {
         res.status(500).send({
             message: `Server error ${error}`
