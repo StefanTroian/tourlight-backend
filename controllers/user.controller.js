@@ -22,7 +22,7 @@ const getAllUsers = async function (req, res) {
 const getUserById = async function (req, res) {
     try {
         
-        let user = await global.DATABASE.collection(CONSTANTS.Databases.Collections.Users).findOne({ 'id': req.params.id });
+        let user = await global.DATABASE.collection(CONSTANTS.Databases.Collections.Users).findOne({ 'uid': req.params.id });
 
         res.status(200).json(user);
 
