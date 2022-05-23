@@ -6,14 +6,16 @@ const {
     getPostById,
     createPost,
     updatePost,
-    deletePost
+    deletePost,
+    getPostsLength
 } = require("../controllers/post.controller");
 
 const router = express.Router({
     mergeParams: true
 })
 
-router.get("/", getAllPosts);
+router.get("/", getPostsLength);
+router.get("/:limit", getAllPosts);
 router.get("/:id", getPostById);
 router.post("/", createPost);
 router.put("/:id", updatePost);
