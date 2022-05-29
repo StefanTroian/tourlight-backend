@@ -16,7 +16,7 @@ const router = express.Router({
 
 router.get("/", getPostsLength);
 router.get("/:limit", getAllPosts);
-router.get("/:id", getPostById);
+router.get("/id/:id", getPostById);
 router.post("/", createPost);
 router.put("/:id", updatePost);
 router.delete("/:id", deletePost);

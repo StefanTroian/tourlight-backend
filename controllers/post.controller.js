@@ -36,7 +36,6 @@ const getPostsLength = async function (req, res) {
 // GET for /api/tourlight/posts/:limit
 const getAllPosts = async function (req, res) {
     try {
-        console.log(req.params.limit)
         let limit = parseInt(req.params.limit)
         let maxLimit = limit;
 
@@ -47,7 +46,6 @@ const getAllPosts = async function (req, res) {
         }
         let posts = await global.DATABASE.collection(CONSTANTS.Databases.Collections.Posts).find().skip(limit - 3).limit(maxLimit).toArray();
 
-        console.log(posts)
         res.status(200).json(posts);
 
     } catch (error) {
@@ -57,7 +55,7 @@ const getAllPosts = async function (req, res) {
     }
 }
 
-// GET for /api/tourlight/posts/:id
+// GET for /api/tourlight/posts/id/:id
 const getPostById = async function (req, res) {
     try {
         
