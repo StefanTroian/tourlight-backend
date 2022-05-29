@@ -66,7 +66,7 @@ const createUser = async function (req, res) {
 const updateUser = async function (req, res) {
     try {
 
-        let user = await global.DATABASE.collection(CONSTANTS.Databases.Collections.Users).findOne({ 'id': req.params.id });
+        let user = await global.DATABASE.collection(CONSTANTS.Databases.Collections.Users).findOne({ 'uid': req.params.id });
         
         // Check if user exists
         if (!user) {
@@ -77,7 +77,7 @@ const updateUser = async function (req, res) {
         
         // updatedUser is now the union of user and req.body. Properties in user will be replaced with those from req.body
         const updatedUser = { ...user, ...req.body };
-        await global.DATABASE.collection(CONSTANTS.Databases.Collections.Users).replaceOne({ 'id': req.params.id }, updatedUser );
+        await global.DATABASE.collection(CONSTANTS.Databases.Collections.Users).replaceOne({ 'uid': req.params.id }, updatedUser );
 
         res.status(200).send({
             message: `User updated successfully.`

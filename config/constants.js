@@ -12,7 +12,8 @@ const CONSTANTS = {
     Databases: {
         Collections: {
             Posts: `posts`,
-            Users: `users`
+            Users: `users`,
+            Locations: `locations`
         }
     }
 }
