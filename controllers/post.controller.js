@@ -33,6 +33,36 @@ const getPostsLength = async function (req, res) {
     }
 }
 
+// GET for /api/tourlight/posts/uid/:id
+const getPostsByUID = async function (req, res) {
+    try {
+        
+        let posts = await global.DATABASE.collection(CONSTANTS.Databases.Collections.Posts).find({ 'useruid': req.params.id }).limit(3).toArray();
+
+        res.status(200).json(posts);
+
+    } catch (error) {
+        res.status(500).send({
+            message: `Server error ${error}`
+        })
+    }
+}
+
+// GET for /api/tourlight/posts/likes/:id
+const getPostsByLikes = async function (req, res) {
+    try {
+        
+        let posts = await global.DATABASE.collection(CONSTANTS.Databases.Collections.Posts).find({ 'likes': req.params.id }).limit(3).toArray();
+
+        res.status(200).json(posts);
+
+    } catch (error) {
+        res.status(500).send({
+            message: `Server error ${error}`
+        })
+    }
+}
+
 // GET for /api/tourlight/posts/:limit
 const getAllPosts = async function (req, res) {
     try {
@@ -145,6 +175,8 @@ const deletePost = async function (req, res) {
 
 module.exports = {
     getPostsLength,
+    getPostsByUID,
+    getPostsByLikes,
     getAllPosts,
     getPostById,
     createPost,
