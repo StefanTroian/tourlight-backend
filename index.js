@@ -19,8 +19,8 @@ const locationRouter = require("./routers/location.router")
 
 const app = express();
 app.disable("x-powered-by");
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({ limit: '50mb'}));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: false }));
 
 const allowedOrigins = ['https://tourlight.herokuapp.com', 'http://localhost:4200', 'http://localhost:8080', undefined];
 app.use(cors({
