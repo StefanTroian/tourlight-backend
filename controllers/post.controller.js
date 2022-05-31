@@ -37,7 +37,7 @@ const getPostsLength = async function (req, res) {
 const getPostsByUID = async function (req, res) {
     try {
         
-        let posts = await global.DATABASE.collection(CONSTANTS.Databases.Collections.Posts).find({ 'useruid': req.params.id }).limit(3).toArray();
+        let posts = await global.DATABASE.collection(CONSTANTS.Databases.Collections.Posts).find({ 'useruid': req.params.id }).toArray();
 
         res.status(200).json(posts);
 
@@ -52,7 +52,7 @@ const getPostsByUID = async function (req, res) {
 const getPostsByLikes = async function (req, res) {
     try {
         
-        let posts = await global.DATABASE.collection(CONSTANTS.Databases.Collections.Posts).find({ 'likes': req.params.id }).limit(3).toArray();
+        let posts = await global.DATABASE.collection(CONSTANTS.Databases.Collections.Posts).find({ 'likes': req.params.id }).toArray();
 
         res.status(200).json(posts);
 
@@ -74,7 +74,7 @@ const getAllPosts = async function (req, res) {
         if (limit > postsLength) {
             maxLimit = postsLength;    
         }
-        let posts = await global.DATABASE.collection(CONSTANTS.Databases.Collections.Posts).find().skip(limit - 3).limit(maxLimit).toArray();
+        let posts = await global.DATABASE.collection(CONSTANTS.Databases.Collections.Posts).find().sort({$natural:-1}).skip(limit - 3).limit(maxLimit).toArray();
 
         res.status(200).json(posts);
 
